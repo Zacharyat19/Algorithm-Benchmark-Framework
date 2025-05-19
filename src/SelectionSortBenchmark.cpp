@@ -2,9 +2,9 @@
 #include <cstdlib>
 #include <iostream>
 
-#include "../Inc/BubbleSortBenchmark.h"
+#include "../Inc/SelectionSort.h"
 
-BubbleSortBenchmark::BubbleSortBenchmark(size_t v_size) : size(v_size) 
+SelectionSortBenchmark::SelectionSortBenchmark(size_t v_size) : size(v_size) 
 {
     data.resize(size);
     reference.resize(size);
@@ -13,45 +13,42 @@ BubbleSortBenchmark::BubbleSortBenchmark(size_t v_size) : size(v_size)
     std::sort(reference.begin(), reference.end());
 }
 
-BubbleSortBenchmark::~BubbleSortBenchmark()
+SelectionSortBenchmark::~SelectionSortBenchmark()
 {
     data.clear();
     reference.clear();
 }
 
-void BubbleSortBenchmark::run()
+void SelectionSortBenchmark::run()
 {
+    int idx;
     for(size_t i = 0; i < data.size() - 1; i++)
     {
-        bool flag = false;
-        for(size_t j = 0; j < data.size() - i - 1; j++)
+        idx = i;
+        for(size_t j = i + 1; j < data.size(); j++)
         {
-            if(data[j] > data[j + 1])
+            if(data[j] < data[idx])
             {
-                std::swap(data[j], data[j + 1]);
-                flag = true;
+                idx = j;
             }
         }
 
-        if(!flag)
-        {
-            break;
-        }
+        std::swap(data[i], data[idx]);
     }
 }
 
-bool BubbleSortBenchmark::validate()
+bool SelectionSortBenchmark::validate()
 {
     return data == reference;
 }
 
-void BubbleSortBenchmark::results(double time)
+void SelectionSortBenchmark::results(double time)
 {
     bool result = validate();
     double throughput = size / (time / 1000.0);
     double bandwidth = (3.0 * size * sizeof(int)) / (time * 1e6);
 
-    std::cout << "==== Benchmark Results Bubble Sort ====\n";
+    std::cout << "==== Benchmark Results Selection Sort ====\n";
     std::cout << "Runtime      : " << time << " ms\n";
     std::cout << "Throughput   : " << throughput << " ops/sec\n";
     std::cout << "Bandwidth    : " << bandwidth << " GB/s\n";
