@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <iostream>
 
-#include "../Inc/SelectionSort.h"
+#include "../Inc/SelectionSortBenchmark.h"
 
 SelectionSortBenchmark::SelectionSortBenchmark(size_t v_size) : size(v_size) 
 {
