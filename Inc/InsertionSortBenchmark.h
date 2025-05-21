@@ -1,10 +1,10 @@
 #include "AlgorithmBenchmark.h"
 
-class BubbleSortBenchmark : public AlgorithmBenchmark
+class InsertionSortBenchmark : public AlgorithmBenchmark
 {
     public:
-        BubbleSortBenchmark(size_t v_size);
-        ~BubbleSortBenchmark();
+        InsertionSortBenchmark(size_t v_size);
+        ~InsertionSortBenchmark();
         void run()                override;
         bool validate()           override;
         void results(double time) override;

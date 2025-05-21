@@ -1,5 +1,3 @@
-#include <vector>
-
 #include "AlgorithmBenchmark.h"
 
 class SelectionSortBenchmark : public AlgorithmBenchmark

@@ -1,7 +1,3 @@
-#include <algorithm>
-#include <cstdlib>
-#include <iostream>
-
 #include "../Inc/QuickSortBenchmark.h"
 
 QuickSortBenchmark::QuickSortBenchmark(size_t v_size) : size(v_size) 
@@ -19,7 +15,7 @@ QuickSortBenchmark::~QuickSortBenchmark()
     reference.clear();
 }
 
-int QuickSortBenchmark::partion(int low, int high)
+int QuickSortBenchmark::partition(int low, int high)
 {
     int pi = data[high];
 
@@ -43,7 +39,7 @@ void QuickSortBenchmark::quicksort(int low, int high)
 {
     if(low < high)
     {
-        int pi = partion(low, high);
+        int pi = partition(low, high);
 
         quicksort(low, pi - 1);
         quicksort(pi + 1, high);
@@ -70,5 +66,5 @@ void QuickSortBenchmark::results(double time)
     std::cout << "Runtime      : " << time << " ms\n";
     std::cout << "Throughput   : " << throughput << " ops/sec\n";
     std::cout << "Bandwidth    : " << bandwidth << " GB/s\n";
-    std::cout << "Validation   : " << (result ? "Passed" : "Failed") << "\n";
+    std::cout << "Validation   : " << (result ? "Passed" : "Failed") << "\n\n";
 }

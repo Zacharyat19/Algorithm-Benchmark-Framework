@@ -1,5 +1,3 @@
-#include <vector>
-
 #include "AlgorithmBenchmark.h"
 
 class QuickSortBenchmark : public AlgorithmBenchmark
@@ -15,6 +13,6 @@ class QuickSortBenchmark : public AlgorithmBenchmark
         std::vector<int> data;
         std::vector<int> reference;
 
-        int  partion(int low, int high);
+        int  partition(int low, int high);
         void quicksort(int low, int high);
 };

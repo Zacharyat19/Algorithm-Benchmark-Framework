@@ -1,6 +1,6 @@
-#include "../Inc/BubbleSortBenchmark.h"
+#include "../Inc/InsertionSortBenchmark.h"
 
-BubbleSortBenchmark::BubbleSortBenchmark(size_t v_size) : size(v_size) 
+InsertionSortBenchmark::InsertionSortBenchmark(size_t v_size) : size(v_size) 
 {
     data.resize(size);
     reference.resize(size);
@@ -9,45 +9,43 @@ BubbleSortBenchmark::BubbleSortBenchmark(size_t v_size) : size(v_size)
     std::sort(reference.begin(), reference.end());
 }
 
-BubbleSortBenchmark::~BubbleSortBenchmark()
+InsertionSortBenchmark::~InsertionSortBenchmark()
 {
     data.clear();
     reference.clear();
 }
 
-void BubbleSortBenchmark::run()
+void InsertionSortBenchmark::run()
 {
-    for(size_t i = 0; i < data.size() - 1; i++)
+    int key, j;
+
+    for (size_t i = 1; i < data.size(); i++) 
     {
-        bool flag = false;
-        for(size_t j = 0; j < data.size() - i - 1; j++)
+        key = data[i];
+        j = i - 1;
+
+        while (j >= 0 && data[j] > key) 
         {
-            if(data[j] > data[j + 1])
-            {
-                std::swap(data[j], data[j + 1]);
-                flag = true;
-            }
+            data[j + 1] = data[j];
+            j = j - 1;
         }
 
-        if(!flag)
-        {
-            break;
-        }
+        data[j + 1] = key;
     }
 }
 
-bool BubbleSortBenchmark::validate()
+bool InsertionSortBenchmark::validate()
 {
     return data == reference;
 }
 
-void BubbleSortBenchmark::results(double time)
+void InsertionSortBenchmark::results(double time)
 {
     bool result = validate();
     double throughput = size / (time / 1000.0);
     double bandwidth = (3.0 * size * sizeof(int)) / (time * 1e6);
 
-    std::cout << "==== Benchmark Results Bubble Sort ====\n";
+    std::cout << "==== Benchmark Results Insertion Sort ====\n";
     std::cout << "Runtime      : " << time << " ms\n";
     std::cout << "Throughput   : " << throughput << " ops/sec\n";
     std::cout << "Bandwidth    : " << bandwidth << " GB/s\n";

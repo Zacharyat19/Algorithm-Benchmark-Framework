@@ -1,9 +1,7 @@
-#include <memory>
-#include <chrono>
-
 #include "../Inc/BubbleSortBenchmark.h"
 #include "../Inc/SelectionSortBenchmark.h"
 #include "../Inc/QuickSortBenchmark.h"
+#include "../Inc/InsertionSortBenchmark.h"
 
 int main()
 {
@@ -12,6 +10,7 @@ int main()
     benchmarks.push_back(std::make_unique<BubbleSortBenchmark>(1000));
     benchmarks.push_back(std::make_unique<SelectionSortBenchmark>(1000));
     benchmarks.push_back(std::make_unique<QuickSortBenchmark>(1000));
+    benchmarks.push_back(std::make_unique<InsertionSortBenchmark>(1000));
 
     for(const auto& benchmark : benchmarks)
     {

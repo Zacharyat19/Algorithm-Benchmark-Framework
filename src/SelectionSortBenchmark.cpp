@@ -1,7 +1,3 @@
-#include <algorithm>
-#include <cstdlib>
-#include <iostream>
-
 #include "../Inc/SelectionSortBenchmark.h"
 
 SelectionSortBenchmark::SelectionSortBenchmark(size_t v_size) : size(v_size) 
@@ -52,5 +48,5 @@ void SelectionSortBenchmark::results(double time)
     std::cout << "Runtime      : " << time << " ms\n";
     std::cout << "Throughput   : " << throughput << " ops/sec\n";
     std::cout << "Bandwidth    : " << bandwidth << " GB/s\n";
-    std::cout << "Validation   : " << (result ? "Passed" : "Failed") << "\n";
+    std::cout << "Validation   : " << (result ? "Passed" : "Failed") << "\n\n";
 }
