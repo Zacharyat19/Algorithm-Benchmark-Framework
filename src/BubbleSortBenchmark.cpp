@@ -19,17 +19,17 @@ void BubbleSortBenchmark::run()
 {
     for(size_t i = 0; i < data.size() - 1; i++)
     {
-        bool flag = false;
+        bool swapped = false;
         for(size_t j = 0; j < data.size() - i - 1; j++)
         {
             if(data[j] > data[j + 1])
             {
                 std::swap(data[j], data[j + 1]);
-                flag = true;
+                swapped = true;
             }
         }
 
-        if(!flag)
+        if(!swapped)
         {
             break;
         }
