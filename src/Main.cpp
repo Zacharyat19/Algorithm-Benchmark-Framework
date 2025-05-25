@@ -5,6 +5,7 @@
 #include "../Inc/SelectionSortBenchmark.h"
 #include "../Inc/QuickSortBenchmark.h"
 #include "../Inc/InsertionSortBenchmark.h"
+#include "../Inc/MergeSortBenchmark.h"
 
 int main(int argc, char** argv)
 {
@@ -14,7 +15,7 @@ int main(int argc, char** argv)
     std::vector<int> sizes;
 
     app.add_option("-a,--algorithm", algorithms, "Algorithms to benchmark")->required()
-        ->check(CLI::IsMember({"BubbleSort", "SelectionSort", "QuickSort", "InsertionSort"}))
+        ->check(CLI::IsMember({"BubbleSort", "SelectionSort", "QuickSort", "InsertionSort", "MergeSort"}))
         ->expected(1, -1);
 
     app.add_option("-s,--size", sizes, "Input sizes")->required()->expected(1, -1);
@@ -26,7 +27,8 @@ int main(int argc, char** argv)
         {"BubbleSort",    [](int size) { return std::make_unique<BubbleSortBenchmark>(size);    }},
         {"SelectionSort", [](int size) { return std::make_unique<SelectionSortBenchmark>(size); }},
         {"QuickSort",     [](int size) { return std::make_unique<QuickSortBenchmark>(size);     }},
-        {"InsertionSort", [](int size) { return std::make_unique<InsertionSortBenchmark>(size); }}
+        {"InsertionSort", [](int size) { return std::make_unique<InsertionSortBenchmark>(size); }},
+        {"MergeSort",     [](int size) { return std::make_unique<MergeSortBenchmark>(size);     }}
     };
 
     std::vector<std::unique_ptr<AlgorithmBenchmark>> benchmarks;
