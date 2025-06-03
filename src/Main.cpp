@@ -37,7 +37,7 @@ int main(int argc, char** argv)
     {
         if (factory.count(algorithms[i])) 
         {
-            benchmarks.push_back(factory[algorithms[i]](sizes[i]));
+            benchmarks.emplace_back(factory[algorithms[i]](sizes[i]));
         }
     }
 
